@@ -8,7 +8,7 @@ var UsuarioSchema = new Schema({
 		type: String,
 		require: true
 	},
-	contraseña: {
+	password: {
 		type: String, 
 		require: true
 	},
@@ -32,14 +32,14 @@ UsuarioSchema.pre("save", function(next){
 			}
 			else
 			{
-				bcrypt.hash(usuario.contraseña, salt, function(error, hash){
+				bcrypt.hash(usuario.password, salt, function(error, hash){
 					if(error)
 					{
 						return next(error);
 					}
 					else
 					{
-						usuario.contraseña = hash;
+						usuario.password = hash;
 						next();
 					}
 				});
@@ -53,7 +53,7 @@ UsuarioSchema.pre("save", function(next){
 });
 
 UsuarioSchema.methods.compararContraseña = function(passw){
-	return bcrypt.compareSync(passw, this.contraseña);
+	return bcrypt.compareSync(passw, this.password);
 }
 
 mongoose.model("Usuario", UsuarioSchema);

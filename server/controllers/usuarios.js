@@ -6,22 +6,22 @@ module.exports = (function(){
 	return {
 		create: function(req, res)
 		{
-			if(!req.body.nombre || !req.body.contraseña || !req.body.email)
+			if(!req.body.nombre || !req.body.password || !req.body.email)
 			{
-				res.json({exito: false, msg: "Ingresa nombre, email y contraseña"});
+				res.json({exito: false, msg: "Ingresa nombre, email y password"});
 			}
 			else
 			{
 				var newUsuario = new Usuario({
 					nombre: req.body.nombre,
-					contraseña: req.body.contraseña,
+					password: req.body.password,
 					email: req.body.email
 				});
 
 				newUsuario.save(function(error){
 					if(error)
 					{
-						return res.json({exito: false, msg: "Esta contraseña ya existe"});
+						return res.json({exito: false, msg: "Esta email ya existe"});
 					}
 					else
 					{
@@ -29,7 +29,7 @@ module.exports = (function(){
 							exito: true, 
 							msg: "Se creo el nuevo usuario " + req.body.nombre,
 							email: req.body.email,
-							contraseña: req.body.contraseña
+							password: req.body.password
 						});
 					}
 				});
@@ -48,13 +48,13 @@ module.exports = (function(){
 				}
 				else
 				{
-					if(usuario.compararContraseña(req.body.contraseña))
+					if(usuario.compararContraseña(req.body.password))
 					{
 						res.json({exito: true, msg: "bienvenido"});
 					}
 					else
 					{
-						res.json({exito: false, msg: "La contraseña es invalida"});
+						res.json({exito: false, msg: "La password es invalida"});
 					}
 				}
 			});		
