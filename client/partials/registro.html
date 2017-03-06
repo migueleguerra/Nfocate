@@ -1,0 +1,17 @@
+<div ng-controller="registroController">
+  <form ng-submit="registro(regData)">
+    <div class="form-group">
+      <label for="nombreInput">Nombre</label>
+      <input type="text" class="form-control" id="nombreInput " placeholder="Nombre" ng-model="regData.nombre"></input>
+    </div>
+    <div class="form-group">
+      <label for="emailInput">Email</label>
+      <input type="email" class="form-control" id="emailInput" placeholder="Email" ng-model="regData.email"></input>
+    </div>
+    <div class="form-group">
+      <label for="passwordInput">Contraseña</label>
+      <input type="password" class="form-control" id="passwordInput" placeholder="Password" ng-model="regData.password"></input>
+    </div>
+    <button type="submit" class="btn btn-default">Enviar</button>
+  </form>
+</div>
