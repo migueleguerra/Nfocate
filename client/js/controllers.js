@@ -23,6 +23,7 @@ pomoApp.controller("loginController", function($scope, usuarioFactory){
   $scope.login = function (regData) {
     // console.log($scope.regData);
     usuarioFactory.loginCreate(regData, function(datos){
+      $scope.regData = {};
       console.log(datos.data);
     })
   }
