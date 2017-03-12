@@ -1,0 +1,43 @@
+<div>
+    <div class="container">
+        <!--fila 1 -->
+        <div class="row">
+            <div class="col-xs-12 text-muted text-center ">
+                <h1>Registro Enfocate</h1>
+            </div>
+        </div>
+
+        <form class="form-horizontal" ng-submit="registro(regData)">
+            <!-- nombre  -->
+            <div class="form-group">
+                <label class="control-label col-xm-2 col-md-2" for="name">Nombre completo:</label>
+                <div class="col-xm-6 col-md-6 col-md-offset-1">
+                    <input type="nameReg" class="form-control" id="nameReg" placeholder="Ingresa tu nombre" ng-model="regData.nombre">
+                </div>
+            </div>
+            <!-- Email -->
+            <div class="form-group">
+                <label class="control-label col-xm-2 col-md-2" for="emailReg">Email:</label>
+                <div class="col-xm-6 col-md-6 col-md-offset-1">
+                    <input type="emailReg" class="form-control" id="emailReg" placeholder="Ingresa tu email" ng-model="regData.email">
+                </div>
+            </div>
+            <!-- password -->
+            <div class="form-group">
+                <label class="control-label col-xm-2 col-md-2" for="pwdReg">Contraseña:</label>
+                <div class="col-xm-10 col-md-6 col-md-offset-1">
+                    <input type="password" class="form-control" id="pwdReg" placeholder="Ingresa tu contraseña" ng-model="regData.password">
+                </div>
+            </div>
+
+            <br><br><br>
+          
+            <!-- boton enviar -->
+            <div class="form-group">
+                <div class="col-xm-offset-2 col-xm-10 col-md-offset-4 col-md-8">
+                    <button type="enviar" class="btn btn-default btn-lg"> Enviar</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
