@@ -1,5 +1,7 @@
 var mongoose = require("mongoose");
 var Usuario = mongoose.model("Usuario");
+var jwt = require("jsonwebtoken");
+var secret = "uameros";
 
 module.exports = (function(){
 
@@ -21,15 +23,30 @@ module.exports = (function(){
 				newUsuario.save(function(error){
 					if(error)
 					{
-						return res.json({exito: false, msg: "Esta email ya existe"});
+						if(error.code === 11000)
+						{
+							return res.json({exito: false, msg: "Este email esta tomado, intente otro."});
+						}
+						return res.json({exito: false, msg: "Error de la base de datos"});
 					}
 					else
 					{
-						res.json({
-							exito: true, 
-							msg: "Se creo el nuevo usuario " + req.body.nombre,
-							email: req.body.email,
-							password: req.body.password
+						Usuario.findOne({
+							email: req.body.email
+						}, function(error, usuario){
+							if(error)
+							{
+								return res.json({exito: flase, msg: "Error del sistema no se logro ingresar"});
+							}
+							else
+							{
+								var token = jwt.sign({ id: usuario._id,
+													   nombre: usuario.nombre
+													   }, 
+													   secret, 
+													   { expiresIn: "24h" });
+								res.json({exito: true, msg: "Se registro correctamente", token: token});
+							}
 						});
 					}
 				});
@@ -44,17 +61,27 @@ module.exports = (function(){
 			{
 				if(error)
 				{
-					return res.json({exito: false, msg: "Este correo no existe"});
+					return res.json({exito: false, msg: "El correo o la contraseña es incorrecta!"});
+				}
+				else if(usuario === null)
+				{
+					return res.json({exito: false, msg: "El correo o la contraseña es incorrecta!"});
 				}
 				else
 				{
 					if(usuario.compararContraseña(req.body.password))
 					{
-						res.json({exito: true, msg: "bienvenido"});
+						var token = jwt.sign({ id: usuario._id,
+											   nombre: usuario.nombre
+											   }, 
+											   secret, 
+											   { expiresIn: "24h" });
+
+						res.json({exito: true, msg: "log in correcto", token: token});
 					}
 					else
 					{
-						res.json({exito: false, msg: "La password es invalida"});
+						res.json({exito: false, msg: "El correo o la contraseña es incorrecta!"});
 					}
 				}
 			});		
