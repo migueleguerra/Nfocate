@@ -77,7 +77,7 @@ module.exports = (function(){
 											   secret, 
 											   { expiresIn: "24h" });
 
-						res.json({exito: true, msg: "log in correcto", token: token});
+						res.json({exito: true, msg: "login...", token: token});
 					}
 					else
 					{

@@ -3,7 +3,7 @@
 // en este caso es lo que habrá en el registro del navegador
 
 //engloba toda la aplicación
-pomoApp.controller("mainController", function(Auth, $scope, $location, $rootScope){
+pomoApp.controller("mainController", function(Auth, $scope, $location, $rootScope, $timeout){
 
     $scope.loadme = false;
     //cuando un route se cambia se invoca cualquier cosa que este aqui adentro
@@ -29,21 +29,57 @@ pomoApp.controller("mainController", function(Auth, $scope, $location, $rootScop
     });
 
     $scope.registro = function (regData) {
-        // console.log($scope.regData);
+        $scope.rcargando = true;
+        $scope.rmensajeExito = false;
+        $scope.rmensajeError = false;
+
         Auth.registroCreate(regData, function(datos){
-            $scope.regData = {};
-            //console.log(datos.data);
-            $location.path("/listas");
-        })
+            if(datos.data.exito)
+            {
+                $scope.rcargando = false;
+                $scope.rregData = {};
+                $scope.rmensajeExito = datos.data.msg + " ...Ingresando";
+                $timeout(function() {
+                    $location.path("/listas");
+                }, 1500);
+            }
+            else
+            {
+                $scope.rcargando = false;
+                $scope.rmensajeError = datos.data.msg;
+                $timeout(function() {
+                    $scope.rmensajeError = false;
+                }, 3000);
+                $scope.lmensajeExito = false;
+            }
+        });
     }
 
     $scope.login = function (logData) {
-        // console.log($scope.regData);
+        $scope.lcargando = true;
+        $scope.lmensajeExito = false;
+        $scope.lmensajeError = false;
+
         Auth.loginCreate(logData, function(datos){
-            $scope.logData = {};
-            //console.log(datos.data);
-            $location.path("/listas");
-        })
+            if(datos.data.exito)
+            {
+                $scope.lcargando = false;
+                $scope.lregData = {};
+                $scope.lmensajeExito = datos.data.msg + " ...Ingresando";
+                $timeout(function() {
+                    $location.path("/listas");
+                    $scope.lmensajeExito = false;
+                }, 1500);
+            }
+            else
+            {
+                $scope.lcargando = false;
+                $scope.lmensajeError = datos.data.msg;
+                $timeout(function() {
+                    $scope.lmensajeError = false;
+                }, 3000);
+            }
+        });
     }
 
     $scope.logout = function(){

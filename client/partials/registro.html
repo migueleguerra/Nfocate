@@ -6,7 +6,7 @@
                 <h1>Registro Enfocate</h1>
             </div>
         </div>
-
+        <br>
         <form class="form-horizontal" ng-submit="registro(regData)">
             <!-- nombre  -->
             <div class="form-group">
@@ -30,7 +30,7 @@
                 </div>
             </div>
 
-            <br><br><br>
+            <br>
           
             <!-- boton enviar -->
             <div class="form-group">
@@ -39,5 +39,24 @@
                 </div>
             </div>
         </form>
+
+        <div class="jumbotron text-center" ng-show="rcargando">
+            <span class="glyphicon glyphicon-repeat spinner"></span>
+            <p>Cargando...</p>
+        </div>
+
+        <br>
+        <div class="row show-hide-message" ng-show="rmensajeExito">
+            <div class="alert alert-success">
+                {{ rmensajeExito }}    
+            </div>
+        </div>
+
+        <br>
+        <div class="row show-hide-message" ng-show="rmensajeError">
+            <div class="alert alert-danger">
+                {{ rmensajeError }}  
+            </div>
+        </div>
     </div>
 </div>
