@@ -41,5 +41,24 @@
                 </div>
             </div>
         </form>
+
+        <div class="jumbotron text-center" ng-show="lcargando">
+            <span class="glyphicon glyphicon-repeat spinner"></span>
+            <p>Cargando...</p>
+        </div>
+
+        <br>
+        <div class="row show-hide-message" ng-show="lmensajeExito">
+            <div class="alert alert-success">
+                {{ lmensajeExito }}    
+            </div>
+        </div>
+
+        <br>
+        <div class="row show-hide-message" ng-show="lmensajeError">
+            <div class="alert alert-danger">
+                {{ lmensajeError }}  
+            </div>
+        </div>
     </div>
 </div>  
