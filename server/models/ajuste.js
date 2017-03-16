@@ -5,43 +5,40 @@ var AjusteSchema = new Schema({
 	tiempoPomodoro: {
 		type: Number, 
 		min: 0, 
-		max: 90, 
-		default: 25, 
+		max: 90,
 		require: true
 	},
-	TiempoDescansoMenor: {
+	tiempoDescansoMenor: {
 		type: Number,
 		min: 0,
 		max: 15,
-		defalut: 5,
 		require: true
 	},
-	TiempoDescansoMayor: {
+	tiempoDescansoMayor: {
 		type: Number,
 		min: 0,
-		max: 45,
-		defalut: 30,
+		max: 60,
 		require: true
 	},
-	SonidoPomodoro: {
+	sonidoPomodoro: {
 		type: Boolean,
-		defalut: true,
 		require: true
 	},
-	SonidoPomodoroFinal: {
+	sonidoPomodoroFinal: {
 		type: Boolean,
-		defalut: true,
 		require: true
 	},
-	SonidoDescanso: {
+	sonidoDescanso: {
 		type: Boolean,
-		defalut: true,
 		require: true
 	},
-	SonidoDescansoFinal: {
+	sonidoDescansoFinal: {
 		type: Boolean,
-		defalut: true,
 		require: true
+	},
+	usuario: {
+		type: Schema.ObjectId,
+		ref: 'Usuario'
 	}
 },
 { timestamps: true });

@@ -30,7 +30,7 @@ pomoApp.factory("Auth", function($http, AuthToken){
     factory.getInfo = function(callback){
         if(AuthToken.getToken())
         {
-            $http.post("/app").then(function(datos){
+            $http.get("/info").then(function(datos){
                 callback(datos);
             })
         }

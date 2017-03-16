@@ -7,24 +7,22 @@ var ProyectoSchema = new Schema({
 		require: true
 	},
 	pagoPorHora: {
-		type: Number,
-		get: getPago,
-		set: setPago
+		type: Number
 	},
 	estado: {
 		type: String,
+		default: false,
 		require: true
-	}
+	},
+	usuario: {
+		type: Schema.ObjectId,
+		ref: 'Usuario'
+	},
+	tareas: [{
+		type: Schema.Types.ObjectId, 
+		ref: 'Tarea'
+	}]
 },
 { timestamps: true });
 
-/*solo puede ingresar cifras asi: 59, 59.00, 59.99 
---- no se puede asi: $59, 59.0*/
-
-function getPago(num){
-    return (num/100).toFixed(2);
-}
-
-function setPago(num){
-    return num*100;
-}
+mongoose.model("Proyecto", ProyectoSchema);

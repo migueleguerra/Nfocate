@@ -6,20 +6,31 @@ var TareaSchema = new Schema({
 		type: String,
 		require: true
 	},
+	tipoTarea: {
+		type: String,
+		require: true
+	},
 	estimacionPomodoro: {
 		type: Number
 	},
-	pomodorosUsados: {
+	pomodorosUsados: [{
 		type: Number,
-		default: 0,
+	}],
+	estado: {
+		type: Boolean,
+		default: false,
 		require: true
 	},
-	fechaTerminacion: {
+	horaHacer: {
 		type: Date
 	},
-	estado: {
-		type: String,
-		require: true
+	usuario: {
+		type: Schema.ObjectId,
+		ref: 'Usuario'
+	},
+	proyecto: {
+		type: Schema.ObjectId,
+		ref: 'Proyecto'
 	}
 },
 { timestamps: true });

@@ -16,7 +16,19 @@ var UsuarioSchema = new Schema({
 		type: String, 
 		require: true, 
 		unique: true
-	}
+	},
+	tareas: [{
+		type: Schema.Types.ObjectId, 
+		ref: 'Tarea'
+	}],
+	ajustes: {
+		type: Schema.Types.ObjectId, 
+		ref: 'Ajuste'
+	},
+	proyectos: [{
+		type: Schema.Types.ObjectId, 
+		ref: 'Proyecto'
+	}]
 }, 
 { timestamps: true });
 
