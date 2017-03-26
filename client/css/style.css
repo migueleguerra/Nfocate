@@ -2,3 +2,18 @@
       width: 70%;
       margin: auto;
   }
+
+#theCounter {
+  border: 1px solid #ddd;
+}
+
+.areaTarea {
+  position:relative
+  padding:.2em 1ex .2em;
+  margin:0 0 1em;
+  background-color:#f5f4f2;
+}
+
+.areaTarea .badge {
+  background-color: red;
+}
