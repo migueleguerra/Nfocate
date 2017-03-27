@@ -1,6 +1,4 @@
 
-// global Space, this should be changed to Settings
-var Settings = {};
 // Objeto de cuenta regresiva
 function Countdown(timeLimit){
 
@@ -119,7 +117,7 @@ function startCounter(counter) {
 
 
 $( document ).ready(function() {
-
+  var Settings = {};
   Settings.timer = new Countdown(25);
 
   var posx = 200;
