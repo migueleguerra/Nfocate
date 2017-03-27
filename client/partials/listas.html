@@ -1,3 +1,17 @@
 <div class="container">
-	<h1>Hola {{ nombre }} tu id es: {{id}} !</h1>
+  <h1>Tareas</h1>
+  <div class="addTarea form-inline row">
+    <div class="col-md-8"> 
+      <input id="newTareaTxt" type="text" class="form-control" id="createTarea" placeholder="Añade una tarea nueva">
+      <input id="createTareaAction" class="btn btn-primary" type="button" value="Añadir">
+    </div>
+    <div class="col-md-4">
+    </div>
+  </div>
+  <div id="ListaTareas" class="list-group">
+    
+  </div>
+	
+  <p>Hola {{ nombre }} tu id es: {{id}} !</p>
 </div>
+<script type="text/javascript" src="./js/lists.js"></script>
