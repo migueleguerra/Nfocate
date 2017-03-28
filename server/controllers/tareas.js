@@ -151,6 +151,18 @@ module.exports = (function(){
 					});
 				}
 			});
+		},
+		obtenerPomoTiempo : function(req, res) {
+			Usuario.find({_id: req.decoded.id}).populate('ajustes').exec(function (error, usuario){
+				if(error)
+					{
+						return res.json({exito: false, msg: "Error de la base de datos, consultar el usuario"});
+					}
+					else
+					{
+						res.json({exito: true, msg: "Pomotiempo encontrado", data: usuario[0].ajustes.tiempoPomodoro});
+					}
+			});
 		}
 	}
 })();

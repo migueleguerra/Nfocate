@@ -85,6 +85,7 @@ function updateCounter(countTime) {
       } else {
         //clearInterval(timeInterval);
         resetCounter(countTime);
+        $("#temporizador").scope().temporizadorTermino();
       }
     });
   });
@@ -118,7 +119,7 @@ function startCounter(counter) {
 
 $( document ).ready(function() {
   var Settings = {};
-  Settings.timer = new Countdown(25);
+  Settings.timer = new Countdown(.1);
 
   var posx = 200;
   var posy = 200;
