@@ -116,7 +116,6 @@ function startCounter(counter) {
   updateCounter(counter);
 }
 
-
 $( document ).ready(function() {
   var Settings = {};
   Settings.timer = new Countdown(.1);

@@ -155,6 +155,17 @@ pomoApp.controller("temporizadorController", function($scope, FactoryUsuario){
             });
         }
         // debemos llamar la ruta /updatePomoTarea
-    }
+    };
+
+    $scope.terminarTarea = function() {
+        // Si tenemos tarea seleccionada
+        if (tareaActual._id) {
+            console.log(tareaActual._id);
+            var idTarea = {id : tareaActual._id};
+            FactoryUsuario.terminarTarea(idTarea, function(data){
+                console.log(data);
+            });
+        }
+    };
 
 });

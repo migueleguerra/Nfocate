@@ -136,7 +136,17 @@ pomoApp.factory("FactoryUsuario", function(AuthToken, $http){
         } else {
             $q.reject({ msg: "Usuario no tiene token"});
         }
-    }
+    };
+
+    factory.terminarTarea = function (tarea, callback){
+         if (AuthToken.getToken()) {
+            $http.post("/terminarTarea", tarea).then( function(data) {
+                callback(data);
+            });
+        } else {
+            $q.reject({ msg: "Usuario no tiene token"});
+        }
+    };
 
     return factory;
 });

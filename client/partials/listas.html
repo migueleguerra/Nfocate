@@ -23,6 +23,22 @@
     </tbody>
   </table>
 	
+  <h2>Tareas terminadas</h2>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <td>Nombre tarea</td>
+        <td>Acción</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="tarea in tareas | filter: { estado: true }">
+        <td>{{ tarea.nombre }}</td>
+        <td><input ng-click="removeTarea(tarea)" type="submit" value="Eliminar"></ins></td>
+      </tr>
+    </tbody>
+  </table>
+
   <p>Hola {{ nombre }} tu id es: {{id}} !</p>
 </div>
 <script type="text/javascript" src="./js/lists.js"></script>
