@@ -16,7 +16,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr ng-repeat="tarea in tareas">
+      <tr ng-repeat="tarea in tareas | filter: { estado: false }">
         <td>{{ tarea.nombre }}</td>
         <td><input ng-click="removeTarea(tarea)" type="submit" value="Eliminar"></ins></td>
       </tr>

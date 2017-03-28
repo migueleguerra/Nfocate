@@ -1,7 +1,7 @@
 <div ng-controller="temporizadorController" id="temporizador" class="container">
   <h1>Temporizador</h1>
   <div class="areaTarea">
-    <select class="form-control" ng-options="tarea as tarea.nombre for tarea in tareas" ng-model="tareaActual.nombreTarea" ng-change="tareaSelect(tareaActual.nombreTarea)">
+    <select class="form-control" ng-options="tarea as tarea.nombre for tarea in tareas | filter: { estado: false }" ng-model="tareaActual.nombreTarea" ng-change="tareaSelect(tareaActual.nombreTarea)">
       <option value="" disabled>Elige una tarea</option>
     </select>
     <dl class="list-group-item dl-horizontal lead">
