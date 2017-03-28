@@ -1,43 +1,31 @@
 <div ng-controller="tareasController" class="container">
-  <h1>Tareas</h1>
-  <div class="addTarea form-inline row">
-    <div class="col-md-8"> 
-      <input ng-model="nombreTarea" id="newTareaTxt" type="text" class="form-control" id="createTarea" placeholder="Añade una tarea nueva">
-      <input ng-click="addTarea()" id="createTareaAction" class="btn btn-primary" type="button" value="Añadir">
+  <div class="addTarea">
+    <div class="form-group row justify-content-center addTarea">
+      <div class="col-md-10">
+        <input ng-model="nombreTarea" id="newTareaTxt" type="text" class="form-control" id="createTarea" placeholder="Añade una tarea nueva">
+        <div class="addButton">
+        <input ng-click="addTarea()" id="createTareaAction" class="btn btn-primary" type="button" value="Añadir">
+        </div>
+      </div>
     </div>
-    <div class="col-md-4">
+    <div class="form-group row">
     </div>
   </div>
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <td>Nombre tarea</td>
-        <td>Acción</td>
-      </tr>
-    </thead>
-    <tbody>
-      <tr ng-repeat="tarea in tareas | filter: { estado: false }">
-        <td>{{ tarea.nombre }}</td>
-        <td><input ng-click="removeTarea(tarea)" type="submit" value="Eliminar"></ins></td>
-      </tr>
-    </tbody>
-  </table>
+  <h2>Tareas</h2>
+  <ul class="list-group">
+    <li class="list-group-item flex-column align-items-start" ng-repeat="tarea in tareas | filter: { estado: false }">
+      {{ tarea.nombre }}
+      <input ng-click="removeTarea(tarea)" type="submit" value="Eliminar" style="float:right"></input>
+    </li>
+  </ul>
 	
-  <h2>Tareas terminadas</h2>
-  <table class="table table-bordered">
-    <thead>
-      <tr>
-        <td>Nombre tarea</td>
-        <td>Acción</td>
-      </tr>
-    </thead>
-    <tbody>
-      <tr ng-repeat="tarea in tareas | filter: { estado: true }">
-        <td>{{ tarea.nombre }}</td>
-        <td><input ng-click="removeTarea(tarea)" type="submit" value="Eliminar"></ins></td>
-      </tr>
-    </tbody>
-  </table>
+  <p class="h4">Tareas terminadas</p>
+  <ul class="list-group">
+    <li class="list-group-item flex-column align-items-start" ng-repeat="tarea in tareas | filter: { estado: true }">
+      {{ tarea.nombre }}
+      <input ng-click="removeTarea(tarea)" type="submit" value="Eliminar" style="float:right"></input>
+    </li>
+  </ul>
 
   <p>Hola {{ nombre }} tu id es: {{id}} !</p>
 </div>

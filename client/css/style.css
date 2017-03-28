@@ -7,6 +7,15 @@
   border: 1px solid #ddd;
 }
 
+.addTarea {
+  position: relative;
+}
+
+.addTarea .addButton {
+  position: absolute;
+  right: 0px; top:0;
+}
+
 .areaTarea {
   position:relative
   padding:.2em 1ex .2em;
