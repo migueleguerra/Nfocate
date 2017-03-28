@@ -47,13 +47,13 @@ function ListaTareas(idName) {
 $( document ).ready(function() {
   //var contenedor = document.querySelector("#ListaTareas");
   //contenedor.appendChild(document.createElement('div'))
-  var id = 0;
-  var tareas = new ListaTareas("ListaTareas");
+  // var id = 0;
+  // var tareas = new ListaTareas("ListaTareas");
 
-  $("#createTareaAction").mousedown(function() {
-    var txt = document.getElementById("newTareaTxt").value;
-    tareas.add(id++, txt);
-  });
+  // $("#createTareaAction").mousedown(function() {
+  //   var txt = document.getElementById("newTareaTxt").value;
+  //   tareas.add(id++, txt);
+  // });
 
   // tareas.add(id++, "Contenido de las tareas", 2);
   // tareas.add(id++, "Una tarea más");

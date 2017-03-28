@@ -1,16 +1,27 @@
-<div class="container">
+<div ng-controller="tareasController" class="container">
   <h1>Tareas</h1>
   <div class="addTarea form-inline row">
     <div class="col-md-8"> 
-      <input id="newTareaTxt" type="text" class="form-control" id="createTarea" placeholder="Añade una tarea nueva">
-      <input id="createTareaAction" class="btn btn-primary" type="button" value="Añadir">
+      <input ng-model="nombreTarea" id="newTareaTxt" type="text" class="form-control" id="createTarea" placeholder="Añade una tarea nueva">
+      <input ng-click="addTarea()" id="createTareaAction" class="btn btn-primary" type="button" value="Añadir">
     </div>
     <div class="col-md-4">
     </div>
   </div>
-  <div id="ListaTareas" class="list-group">
-    
-  </div>
+  <table class="table table-bordered">
+    <thead>
+      <tr>
+        <td>Nombre tarea</td>
+        <td>Acción</td>
+      </tr>
+    </thead>
+    <tbody>
+      <tr ng-repeat="tarea in tareas">
+        <td>{{ tarea.nombre }}</td>
+        <td><input ng-click="removeTarea(tarea)" type="submit" value="Eliminar"></ins></td>
+      </tr>
+    </tbody>
+  </table>
 	
   <p>Hola {{ nombre }} tu id es: {{id}} !</p>
 </div>

@@ -87,3 +87,74 @@ pomoApp.controller("mainController", function(Auth, $scope, $location, $rootScop
         $location.path("/");
     }
 });
+
+pomoApp.controller("tareasController", function($scope, FactoryUsuario){
+    var tareas = [];
+    
+    FactoryUsuario.getUserTareas(function(data){
+        console.log(data.data.data);
+        $scope.tareas = data.data.data;
+        tareas = data;
+    });
+
+    $scope.addTarea = function() {
+
+        var tarea = {
+            nombre : $scope.nombreTarea,
+            tipoTarea : "normal",
+        }
+        $scope.nombreTarea = "";
+
+        // envío a base de Datos
+        FactoryUsuario.createTarea(tarea, function(data){ 
+            console.log(data.data.data);
+            $scope.tareas = data.data.data;
+            tareas = data;
+        });
+
+    };
+
+    $scope.removeTarea = function(tarea) {
+
+        var idTarea = {id : tarea._id};
+        FactoryUsuario.deleteTarea(idTarea, function(data){
+            console.log(data);
+            $scope.tareas = data.data.data;
+            tareas = data;
+        });
+    };
+});
+
+pomoApp.controller("temporizadorController", function($scope, FactoryUsuario){
+    var tareas = [];
+    var tareaActual = "";
+    
+    FactoryUsuario.getUserTareas(function(data){
+        console.log(data.data.data);
+        $scope.tareas = data.data.data;
+        tareas = data;
+    });
+
+    $scope.tareaSelect = function(data) {
+        console.log(data);
+        tareaActual = data;
+    };
+
+    $scope.temporizadorTermino = function() {
+        if (tareaActual._id) {
+            FactoryUsuario.obtenerTiempoPomo(function(data) {
+                // Creamos objeto con el tiempo pomo
+                var tareaData = {
+                    id : tareaActual._id,
+                    pomodorosUsados : data.data.data
+                };
+                // actualizamos pomo en base de datos
+                FactoryUsuario.acutalizarPomoTarea(tareaData, function(data){
+                    console.log(data);
+                }); 
+            });
+        }
+        // debemos llamar la ruta /updatePomoTarea
+    }
+
+});
