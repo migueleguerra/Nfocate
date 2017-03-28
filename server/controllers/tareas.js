@@ -134,7 +134,7 @@ module.exports = (function(){
 						{
 							var index = usuario.tareas.indexOf(req.body.id);
 							if (index > -1) 
-    							usuario.tareas.splice(index, 1);
+    						usuario.tareas.splice(index, 1);
 
     						usuario.save(function(error){
     							if(error)
@@ -143,7 +143,7 @@ module.exports = (function(){
     							}
     							else
     							{
-    								console.log("Se elimino tarea");
+    							console.log("Se elimino tarea");
 									res.redirect("/tareas");
     							}
     						});

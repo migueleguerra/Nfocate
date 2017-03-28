@@ -114,7 +114,7 @@ module.exports = function(app){
 	/*
 		en esta ruta "/updatePomoTarea" se envian los campos:
 		x-access-token: token
-		idTarea (requerido) (String)
+		id (requerido) (String)
 		pomodorosUsados (requerido) (Esta información la obtienes de los ajustes de cada usuario en la variable "tiempoPomodoro") (Number)
 	*/
 	app.post("/updatePomoTarea", function(req, res){
