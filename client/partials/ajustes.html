@@ -1,22 +1,105 @@
-<div class="container">
-	<div class="row">
-	    <div class="col-xs-12 col-md-5">
-	      	<h3 class="text-center"><strong>Tiempo del pomodoro</strong></h3>
-	    </div>
-	    <div class="col-xs-offset-2 col-xs-8 col-md-offset-0 col-md-3">
-	      	<label id="duracionP" name="labelI"></label>
-	      	<br>
-	      	<input id ="rangeP" type="range" name="rango" min="0" max="90" onmouseup="actualizar(id,'duracionP')">
-	    </div>
-  	</div>
-  	<br>
-  	<div class="row">
-    	<div class="col-xs-12 col-md-5">
-      		<h3 class="text-center"><strong>Sonido temporizador pomodoro</strong></h3>
-    	</div>
-    <div class="col-xs-offset-4 col-xs-8 col-md-offset-0 col-md-3">
-      	<div class="checkbox">
- 			<input type="checkbox" data-toggle="toggle">
-      	</div>
+<div class="container" ng-controller="ajustesController">
+	  <div class="row">
+        <div class="col-xs-12 col-md-5">
+            <h3>Tiempo del pomodoro</h3>
+        </div>
+        <div class="col-xs-offset-2 col-xs-8 col-md-offset-0 col-md-3">
+    	      <md-slider-container>
+                    <md-slider flex min="20" max="90" ng-model="ajustes.tiempoPomodoro" aria-label="blue" id="-slider" class="md-primary"></md-slider>
+                <md-input-container>
+                    <input flex type="number" ng-model="ajustes.tiempoPomodoro" aria-label="blue" aria-controls="blue-slider">
+                </md-input-container>
+            </md-slider-container>
+        </div>
     </div>
+
+    <div class="row">
+        <div class="col-xs-12 col-md-5">
+            <h3>Sonido temporizador pomodoro</h3>
+        </div>
+        <div class="col-xs-offset-4 col-xs-8 col-md-offset-0 col-md-3">
+            <switch ng-model="ajustes.sonidoPomodoro" on="On" off="Off" class="green"></switch>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 col-md-5">
+            <h3>Sonido final pomodoro</h3>
+        </div>
+        <div class="col-xs-offset-4 col-xs-8 col-md-offset-0 col-md-3">
+            <switch ng-model="ajustes.sonidoPomodoroFinal" on="On" off="Off" class="green"></switch>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 col-md-5">
+            <h3>Tiempo descanso menor</h3>
+        </div>
+        <div class="col-xs-offset-2 col-xs-8 col-md-offset-0 col-md-3">
+            <md-slider-container>
+                    <md-slider flex min="3" max="15" ng-model="ajustes.tiempoDescansoMenor" aria-label="blue" id="-slider" class="md-primary"></md-slider>
+                <md-input-container>
+                    <input flex type="number" ng-model="ajustes.tiempoDescansoMenor" aria-label="blue" aria-controls="blue-slider">
+                </md-input-container>
+            </md-slider-container>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 col-md-5">
+            <h3>Tiempo descanso mayor</h3>
+        </div>
+        <div class="col-xs-offset-2 col-xs-8 col-md-offset-0 col-md-3">
+            <md-slider-container>
+                    <md-slider flex min="20" max="60" ng-model="ajustes.tiempoDescansoMayor" aria-label="blue" id="-slider" class="md-primary"></md-slider>
+                <md-input-container>
+                    <input flex type="number" ng-model="ajustes.tiempoDescansoMayor" aria-label="blue" aria-controls="blue-slider">
+                </md-input-container>
+            </md-slider-container>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 col-md-5">
+            <h3>Sonido descanso</h3>
+        </div>
+        <div class="col-xs-offset-4 col-xs-8 col-md-offset-0 col-md-3">
+            <switch ng-model="ajustes.sonidoDescanso" on="On" off="Off" class="green"></switch>
+        </div>
+    </div>
+
+    <div class="row">
+        <div class="col-xs-12 col-md-5">
+            <h3>Sonido final descanso</h3>
+        </div>
+        <div class="col-xs-offset-4 col-xs-8 col-md-offset-0 col-md-3">
+            <switch ng-model="ajustes.sonidoDescansoFinal" on="On" off="Off" class="green"></switch>
+        </div>
+    </div>
+
+    <br><br>
+    <div class="row">
+        <div class="col-xs-offset-4 col-xs-8 col-md-offset-4 col-md-4">
+            <button type="button" class="btn btn-primary form-center" ng-click="guardarCambios()">Guardar cambios</button>
+        </div>
+    </div>
+
+    <div class="jumbotron text-center" ng-show="lcargando">
+            <span class="glyphicon glyphicon-repeat spinner"></span>
+            <p>Cargando...</p>
+        </div>
+
+        <br>
+        <div class="row show-hide-message" ng-show="lmensajeExito">
+            <div class="alert alert-success">
+                {{ lmensajeExito }}    
+            </div>
+        </div>
+
+        <br>
+        <div class="row show-hide-message" ng-show="lmensajeError">
+            <div class="alert alert-danger">
+                {{ lmensajeError }}  
+            </div>
+        </div>
 </div>

@@ -134,7 +134,7 @@ module.exports = (function(){
 						{
 							var index = usuario.tareas.indexOf(req.body.id);
 							if (index > -1) 
-    							usuario.tareas.splice(index, 1);
+    						usuario.tareas.splice(index, 1);
 
     						usuario.save(function(error){
     							if(error)
@@ -143,13 +143,25 @@ module.exports = (function(){
     							}
     							else
     							{
-    								console.log("Se elimino tarea");
+    							console.log("Se elimino tarea");
 									res.redirect("/tareas");
     							}
     						});
 						}
 					});
 				}
+			});
+		},
+		obtenerPomoTiempo : function(req, res) {
+			Usuario.find({_id: req.decoded.id}).populate('ajustes').exec(function (error, usuario){
+				if(error)
+					{
+						return res.json({exito: false, msg: "Error de la base de datos, consultar el usuario"});
+					}
+					else
+					{
+						res.json({exito: true, msg: "Pomotiempo encontrado", data: usuario[0].ajustes.tiempoPomodoro});
+					}
 			});
 		}
 	}

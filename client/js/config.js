@@ -2,7 +2,7 @@
 
 // variable de aplicación de Angular
 // debemos agregar los módulos a la variable
-var pomoApp = angular.module("pomoApp", ["ngRoute", "ngMessages"]);
+var pomoApp = angular.module("pomoApp", ["ngRoute", "ngMessages", "ngMaterial", "uiSwitch"]);
 
 //intercepta todos los https request con el factory AuthInterceptors
 pomoApp.config(function($httpProvider){

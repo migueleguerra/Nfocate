@@ -139,6 +139,10 @@ module.exports = function(app){
 		tareas.eliminar(req, res);
 	});
 
+	app.get("/obtenerPomoTiempo", function(req, res){
+		tareas.obtenerPomoTiempo(req, res);
+	});
+
 	/* ================= Ajustes ================= */
 
 	//Se envia solo x-access-token: token

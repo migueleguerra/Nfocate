@@ -82,3 +82,97 @@ pomoApp.factory("AuthInterceptors", function(AuthToken){
     return factory;
 
 });
+
+// conecta a base de datos para bajar la información del usuario
+pomoApp.factory("FactoryUsuario", function(AuthToken, $http){
+    var factory = {};
+
+    factory.getUserTareas = function(callback) {
+        if (AuthToken.getToken()) {
+            $http.get("/tareas").then(function (tareas){
+                callback(tareas);
+            });
+        } else {
+            $q.reject({ msg: "Usuario no tiene token"});
+        }
+    }
+
+    factory.createTarea = function(data, callback){
+        if (AuthToken.getToken()) {
+            $http.post("/crearTarea", data).then( function(tareas) {
+                    callback(tareas);
+            });
+        } else {
+            $q.reject({ msg: "Usuario no tiene token"});
+        }
+    };
+
+    factory.deleteTarea = function(data, callback){
+        
+        if (AuthToken.getToken()) {
+            $http.post("/eliminarTarea", data).then( function(tareas) {
+                callback(tareas);
+            });
+        } else {
+            $q.reject({ msg: "Usuario no tiene token"});
+        }
+    };
+
+    factory.obtenerTiempoPomo = function(callback){
+        if (AuthToken.getToken()) {
+            $http.get("/obtenerPomoTiempo").then( function(data) {
+                callback(data);
+            });
+        } else {
+            $q.reject({ msg: "Usuario no tiene token"});
+        }
+    };
+
+    factory.acutalizarPomoTarea = function (tareaData, callback){
+         if (AuthToken.getToken()) {
+            $http.post("/updatePomoTarea", tareaData).then( function(data) {
+                callback(data);
+            });
+        } else {
+            $q.reject({ msg: "Usuario no tiene token"});
+        }
+    };
+
+    factory.terminarTarea = function (tarea, callback){
+         if (AuthToken.getToken()) {
+            $http.post("/terminarTarea", tarea).then( function(data) {
+                callback(data);
+            });
+        } else {
+            $q.reject({ msg: "Usuario no tiene token"});
+        }
+    };
+
+    return factory;
+});
+
+pomoApp.factory("FactoryAjustes", function(AuthToken, $http){
+    var factory = {};
+
+    factory.getUserAjustes = function(callback){
+        if(AuthToken.getToken()){
+            $http.get("/ajustes").then(function(data){
+                callback(data);
+            });
+        } else {
+            $q.reject({ msg: "Usuario no tiene token"});
+        }
+    }
+
+    factory.actualizarAjustes = function(ajustesData, callback){
+        if (AuthToken.getToken()) {
+            $http.post("/updateAjustes", ajustesData).then( function(data) {
+                callback(data);
+            });
+        } else {
+            $q.reject({ msg: "Usuario no tiene token"});
+        }
+    }
+
+    return factory;
+});

@@ -1,3 +1,24 @@
-<div class="container">
-	Temporizador
+<div ng-controller="temporizadorController" id="temporizador" class="container">
+  <h1>Temporizador</h1>
+  <div class="areaTarea">
+    <select class="form-control" ng-options="tarea as tarea.nombre for tarea in tareas | filter: { estado: false }" ng-model="tareaActual.nombreTarea" ng-change="tareaSelect(tareaActual.nombreTarea)">
+      <option value="" disabled>Elige una tarea</option>
+    </select>
+    <dl class="list-group-item dl-horizontal lead">
+      <dt>Tarea</dt>
+      <dd>Nombre de tarea
+      <span class="badge">1</span></dd>
+    </dl>
+  </div>
+  <div class="row">
+  <div class="col-md-8"> 
+	 <canvas id="theCounter" width="400" height="400"></canvas>
+  </div>
+  <div class="col-md-4">
+    <input id="counterButton" class="btn btn-primary" type="button" value="Iniciar">
+    <input id="counterReset" class="btn btn-default" type="button" value="Reset">
+    <input ng-click="terminarTarea()" id="terminarTarea" class="btn btn-default" type="button" value="Terminar Tarea">
+  </div>
+  </div>
 </div>
+<script type="text/javascript" src="./js/counter.js"></script>
