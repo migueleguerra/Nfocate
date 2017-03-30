@@ -114,7 +114,7 @@ module.exports = function(app){
 	/*
 		en esta ruta "/updatePomoTarea" se envian los campos:
 		x-access-token: token
-		idTarea (requerido) (String)
+		id (requerido) (String)
 		pomodorosUsados (requerido) (Esta información la obtienes de los ajustes de cada usuario en la variable "tiempoPomodoro") (Number)
 	*/
 	app.post("/updatePomoTarea", function(req, res){
@@ -124,7 +124,7 @@ module.exports = function(app){
 	/*
 		en esta ruta "/terminarTarea" se envian los campos:
 		x-access-token: token
-		idTarea (requerido) (String)
+		id (requerido) (String)
 	*/
 	app.post("/terminarTarea", function(req, res){
 		tareas.terminar(req, res);
@@ -133,7 +133,7 @@ module.exports = function(app){
 	/*
 		en esta ruta "/eliminarTarea" se envian los campos:
 		x-access-token: token
-		idTarea (requerido) (String)
+		id (requerido) (String)
 	*/
 	app.post("/eliminarTarea", function(req, res){
 		tareas.eliminar(req, res);
