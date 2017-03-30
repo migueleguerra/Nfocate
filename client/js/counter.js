@@ -140,7 +140,7 @@ $( document ).ready(function() {
   }).drawRect({
     layer: true,
     name: 'pushEvent',
-    fillStyle: '#6c00',
+    fillStyle: 'rgba(255,255,255,0)',
     groups: ['counter'],
     x: posx, y: posy,
     width: figSize, height: figSize,
