@@ -123,11 +123,27 @@ pomoApp.controller("tareasController", function($scope, FactoryUsuario){
             tareas = data;
         });
     };
+
+    $scope.getTiempoTotalPomos = function(pomodoros) {
+        return pomodoros.reduce( function(a,b) {
+            return a + b;
+        }, 0);
+    };
+
+    $scope.muestraUrgente = function(tipo) {
+        var ret = "";
+        if (tipo === "urgente") {
+            ret = tipo;
+        }
+        return ret;
+    }
 });
 
 pomoApp.controller("temporizadorController", function($scope, FactoryUsuario){
     var tareas = [];
     var tareaActual = "";
+    $scope.nombre_tarea = "";
+    $scope.pomos_tarea = "";
     
     FactoryUsuario.getUserTareas(function(data){
         console.log(data.data.data);
@@ -138,6 +154,10 @@ pomoApp.controller("temporizadorController", function($scope, FactoryUsuario){
     $scope.tareaSelect = function(data) {
         console.log(data);
         tareaActual = data;
+        $scope.nombre_tarea = data.nombre;
+        $scope.pomos_tarea = data.pomodorosUsados.reduce( function(a,b) {
+            return a + b;
+        }, 0);
     };
 
     $scope.temporizadorTermino = function() {
@@ -148,6 +168,7 @@ pomoApp.controller("temporizadorController", function($scope, FactoryUsuario){
                     id : tareaActual._id,
                     pomodorosUsados : data.data.data
                 };
+                $scope.pomos_tarea += tareaData.pomodorosUsados;
                 // actualizamos pomo en base de datos
                 FactoryUsuario.acutalizarPomoTarea(tareaData, function(data){
                     console.log(data);

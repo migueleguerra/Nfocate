@@ -4,7 +4,35 @@
   }
 
 #theCounter {
+  margin: 0 auto;
+  width: 100%;
   border: 1px solid #ddd;
+}
+
+.dropdown-menu a {
+  cursor: pointer;
+}
+
+.list-action button {
+  margin:0 1em 0 0;
+  padding: 0 6px;
+}
+
+.fleft {
+  float:left;
+}
+
+.fright {
+  float: right;
+}
+
+.label-as-badge {
+    border-radius: 1em;
+}
+
+.canvas-container {
+  margin: 0 auto;
+  max-width: 500px;
 }
 
 .addTarea {
@@ -13,7 +41,7 @@
 
 .addTarea .addButton {
   position: absolute;
-  right: 0px; top:0;
+  right: 15px; top:0;
 }
 
 .areaTarea {
