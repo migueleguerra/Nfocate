@@ -108,11 +108,11 @@ pomoApp.controller("tareasController", function($scope, FactoryUsuario){
         proyectos = data;
     });
 
-    $scope.addTarea = function() {
+    $scope.addTarea = function(tipo) {
 
         var tarea = {
             nombre : $scope.nombreTarea,
-            tipoTarea : "normal",
+            tipoTarea : tipo,
         }
         $scope.nombreTarea = "";
 
@@ -202,15 +202,52 @@ pomoApp.controller("tareasController", function($scope, FactoryUsuario){
 
 pomoApp.controller("temporizadorController", function($scope, FactoryUsuario){
     var tareas = [];
+    var proyectos = [];
+    var tmp = 0;
+
     var tareaActual = "";
+    $scope.nombreTarea = "";
     $scope.nombre_tarea = "";
     $scope.pomos_tarea = "";
+    $scope.priori_tarea = "";
     
     FactoryUsuario.getUserTareas(function(data){
         console.log(data.data.data);
         $scope.tareas = data.data.data;
         tareas = data;
     });
+
+    FactoryUsuario.getUserProyectos(function(data){
+        console.log(data.data.data);
+        proyectos = data.data.data;
+    });
+
+    $scope.addTarea = function(tipo) {
+
+        var tarea = {
+            nombre : $scope.nombreTarea,
+            tipoTarea : tipo,
+        }
+        $scope.nombreTarea = "";
+
+        // envío a base de Datos
+        // data contiene arreglo de tareas
+        FactoryUsuario.createTarea(tarea, function(data){ 
+            console.log(data);
+            $scope.tareas = data;
+            //tareas = data;
+
+            // agregamos a proyecto si es que existe
+            // asumimos que tarea agregada es la última
+            if ($scope.proyecto_select) {
+                $scope.addTareaToProyecto(data[data.length -1], $scope.proyecto_select);
+            }
+        });
+    };
+
+    $scope.clasificaTareas = function(tarea) {
+        return (tarea) ? tarea : "General";
+    }
 
     $scope.tareaSelect = function(data) {
         console.log(data);
@@ -219,6 +256,7 @@ pomoApp.controller("temporizadorController", function($scope, FactoryUsuario){
         $scope.pomos_tarea = data.pomodorosUsados.reduce( function(a,b) {
             return a + b;
         }, 0);
+        $scope.priori_tarea = data.tipoTarea;
     };
 
     $scope.obtenerTiempoPomo = function(callback) {

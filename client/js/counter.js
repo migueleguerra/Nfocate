@@ -117,6 +117,8 @@ function startCounter(counter) {
 }
 
 $( document ).ready(function() {
+  $('.selectpicker').selectpicker();
+  
   var Settings = {};
   Settings.timer = new Countdown(1);
   $("#temporizador").scope().obtenerTiempoPomo(function (pomoTime) {

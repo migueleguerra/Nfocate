@@ -3,25 +3,28 @@
   <div class="row">
     <div class="col-md-6">
       <div class="areaTarea">
-        <select class="form-control" ng-options="tarea as tarea.nombre for tarea in tareas | filter: { estado: false }" ng-model="tareaActual.nombreTarea" ng-change="tareaSelect(tareaActual.nombreTarea)">
+        <select class="selectpicker f-width" ng-options="tarea as tarea.nombre group by clasificaTareas(tarea.proyecto) for tarea in tareas | filter: { estado: false }" ng-model="tareaActual.nombreTarea" ng-change="tareaSelect(tareaActual.nombreTarea)">
           <option value="" disabled>Elige una tarea</option>
+
         </select>
+        <!-- <span ng-repeat="for tarea in tareas">{{ getProyectoTarea(tarea) }}</span> -->
         <div class="list-group-item dl-horizontal lead">
           <h3 ng-bind="nombre_tarea"></h3>
           <dl>
             <dt class="h4">Tiempo total:</dt>
             <dd><span class="" ng-bind="pomos_tarea"></span></dd>
             <dt class="h4">Prioridad:</dt>
-            <dd><span></span></dd>
+            <dd><span ng-bind="priori_tarea"></span></dd>
             <dt class="h4">Proyecto:</dt>
             <dd><span></span></dd>
           </dl>
         </div>
       </div>
       <div>
-        <input id="counterButton" class="btn btn-primary" type="button" value="Iniciar">
-        <input id="counterReset" class="btn btn-default" type="button" value="Reset">
-        <input ng-click="terminarTarea()" id="terminarTarea" class="btn btn-default" type="button" value="Terminar Tarea">
+        <input id="counterButton" class="btn btn-primary" type="button" value="Iniciar"></input>
+        <input id="counterReset" class="btn btn-default" type="button" value="Reset"></input>
+        <input ng-click="terminarTarea()" id="terminarTarea" class="btn btn-default" type="button" value="Terminar Tarea"></input>
+        <input data-toggle="modal" data-target="#modalNewUrgent" id="terminarTarea" class="btn btn-danger" type="button" value="Añadir Tarea Urgente"></input>
       </div>
     </div>
     <div class="col-md-6">
@@ -32,5 +35,26 @@
     <div class="clearfix visible-xs-block">
     </div>
   </div>
+
+  <!-- Modal -->
+  <div class="modal fade" id="modalNewUrgent" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Añadir Tarea Urgente</h4>
+        </div>
+        <div class="modal-body">
+          <form class="my-form-position form-inline f-width">
+            <input ng-model="nombreTarea" type="text" class="form-control f-width" id="createTarea" placeholder="Nombre de la tarea">
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button ng-click="addTarea('urgente')" type="button" class="btn btn-primary" data-dismiss="modal">Añadir Tarea</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
 <script type="text/javascript" src="./js/counter.js"></script>
