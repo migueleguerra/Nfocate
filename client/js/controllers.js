@@ -221,6 +221,13 @@ pomoApp.controller("temporizadorController", function($scope, FactoryUsuario){
         }, 0);
     };
 
+    $scope.obtenerTiempoPomo = function(callback) {
+        FactoryUsuario.obtenerTiempoPomo(function(data){
+            tiempoPomo = data.data.data;
+            callback(data.data.data);
+        });
+    };
+
     $scope.temporizadorTermino = function() {
         if (tareaActual._id) {
             FactoryUsuario.obtenerTiempoPomo(function(data) {

@@ -118,56 +118,58 @@ function startCounter(counter) {
 
 $( document ).ready(function() {
   var Settings = {};
-  Settings.timer = new Countdown(.1);
+  Settings.timer = new Countdown(1);
+  $("#temporizador").scope().obtenerTiempoPomo(function (pomoTime) {
+    Settings.timer.setTime(pomoTime);
 
-  var posx = 200;
-  var posy = 200;
-  var figSize = 300;
-  //var timeinterval = setInterval(updateClock,1000);
+    var posx = 200;
+    var posy = 200;
+    var figSize = 300;
 
-  //console.log($.jCanvas.defaults);
-  
-  $('#theCounter').drawArc({
-    layer: true,
-    name: 'clockGauge',
-    strokeStyle: '#3d77ff',
-    strokeWidth: 26,
-    x: posx, y: posy,
-    radius: figSize/2,
-    // start and end angles in degrees
-    start: 0, end: 360
+    //console.log($.jCanvas.defaults);
+    $('#theCounter').drawArc({
+      layer: true,
+      name: 'clockGauge',
+      strokeStyle: '#3d77ff',
+      strokeWidth: 26,
+      x: posx, y: posy,
+      radius: figSize/2,
+      // start and end angles in degrees
+      start: 0, end: 360
 
-  }).drawRect({
-    layer: true,
-    name: 'pushEvent',
-    fillStyle: 'rgba(255,255,255,0)',
-    groups: ['counter'],
-    x: posx, y: posy,
-    width: figSize, height: figSize,
-    click: function(layer) {
-      startCounter(Settings.timer);
-    }
-  });
+    }).drawRect({
+      layer: true,
+      name: 'pushEvent',
+      fillStyle: 'rgba(255,255,255,0)',
+      groups: ['counter'],
+      x: posx, y: posy,
+      width: figSize, height: figSize,
+      click: function(layer) {
+        startCounter(Settings.timer);
+      }
+    });
 
-  $('#theCounter').drawText({
-    name: 'theText',
-    layer: true,
-    groups: ['counter'],
-    fillStyle: '#000',
-    strokeWidth: 2,
-    x: posx, y: posy,
-    fontSize: 72,
-    fontFamily: 'Helvetica, Verdana, sans-serif',
-    text: Settings.timer.parseTimeRemain()
-  });
+    $('#theCounter').drawText({
+      name: 'theText',
+      layer: true,
+      groups: ['counter'],
+      fillStyle: '#000',
+      strokeWidth: 2,
+      x: posx, y: posy,
+      fontSize: 72,
+      fontFamily: 'Helvetica, Verdana, sans-serif',
+      text: Settings.timer.parseTimeRemain()
+    });
 
-  $("#counterButton").mousedown(function() {
-      $('#theCounter').triggerLayerEvent('pushEvent', 'click');
-  });
+    $("#counterButton").mousedown(function() {
+        $('#theCounter').triggerLayerEvent('pushEvent', 'click');
+    });
 
-  $("#counterReset").mousedown(function() {
-    stopCounter();
-    resetCounter(Settings.timer);
+    $("#counterReset").mousedown(function() {
+      stopCounter();
+      resetCounter(Settings.timer);
+    });
+    
   });
 
 });
