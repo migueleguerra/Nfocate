@@ -100,7 +100,7 @@ pomoApp.factory("FactoryUsuario", function(AuthToken, $http){
     factory.createTarea = function(data, callback){
         if (AuthToken.getToken()) {
             $http.post("/crearTarea", data).then( function(tareas) {
-                    callback(tareas);
+                    callback(tareas.data.data);
             });
         } else {
             $q.reject({ msg: "Usuario no tiene token"});
@@ -142,6 +142,37 @@ pomoApp.factory("FactoryUsuario", function(AuthToken, $http){
          if (AuthToken.getToken()) {
             $http.post("/terminarTarea", tarea).then( function(data) {
                 callback(data);
+            });
+        } else {
+            $q.reject({ msg: "Usuario no tiene token"});
+        }
+    };
+
+    factory.createProyecto = function(proyecto, callback) {
+        if (AuthToken.getToken()) {
+            $http.post("/crearProyecto", proyecto).then(function (proyectos){
+                console.log(proyectos);
+                callback(proyectos);
+            });
+        } else {
+            $q.reject({ msg: "Usuario no tiene token"});
+        }
+    };
+
+    factory.getUserProyectos = function(callback) {
+        if (AuthToken.getToken()) {
+            $http.get("/proyectos").then(function (proyectos){
+                callback(proyectos);
+            });
+        } else {
+            $q.reject({ msg: "Usuario no tiene token"});
+        }
+    };
+
+    factory.addTareaToProyecto = function(datos, callback) {
+        if (AuthToken.getToken()) {
+            $http.post("/agregarTareaAProyecto", datos).then(function (proyectos){
+                callback(proyectos);
             });
         } else {
             $q.reject({ msg: "Usuario no tiene token"});

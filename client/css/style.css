@@ -26,6 +26,10 @@
   float: right;
 }
 
+.f-width {
+  width: 100% !important;
+}
+
 .label-as-badge {
     border-radius: 1em;
 }
@@ -53,4 +57,16 @@
 
 .areaTarea .badge {
   background-color: red;
+}
+
+.my-form-position {
+  position:relative;
+  padding-right:6em;
+}
+
+.my-form-position .floater-right {
+  position:absolute;
+  width:5.8em;
+  right:0;
+  top:0;
 }

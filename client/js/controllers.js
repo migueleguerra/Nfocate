@@ -90,11 +90,22 @@ pomoApp.controller("mainController", function(Auth, $scope, $location, $rootScop
 
 pomoApp.controller("tareasController", function($scope, FactoryUsuario){
     var tareas = [];
+    var proyectos = [];
+    $scope.proyectos = [];
+
+    $scope.tarifaProyecto = "";
+    $scope.proyecto_select = "";
     
     FactoryUsuario.getUserTareas(function(data){
-        console.log(data.data.data);
+        //console.log(data.data.data);
         $scope.tareas = data.data.data;
         tareas = data;
+    });
+
+    FactoryUsuario.getUserProyectos(function(data){
+        console.log(data.data.data);
+        $scope.proyectos = data.data.data;
+        proyectos = data;
     });
 
     $scope.addTarea = function() {
@@ -106,12 +117,28 @@ pomoApp.controller("tareasController", function($scope, FactoryUsuario){
         $scope.nombreTarea = "";
 
         // envío a base de Datos
+        // data contiene arreglo de tareas
         FactoryUsuario.createTarea(tarea, function(data){ 
-            console.log(data.data.data);
-            $scope.tareas = data.data.data;
-            tareas = data;
-        });
+            console.log(data);
+            $scope.tareas = data;
+            //tareas = data;
 
+            // agregamos a proyecto si es que existe
+            // asumimos que tarea agregada es la última
+            if ($scope.proyecto_select) {
+                $scope.addTareaToProyecto(data[data.length -1], $scope.proyecto_select);
+            }
+        });
+    };
+
+    $scope.addTareaToProyecto = function(tarea, proyecto){
+        var datos = {
+            idTarea : tarea._id,
+            idProyecto : proyecto._id,
+        }
+        FactoryUsuario.addTareaToProyecto(datos, function(data){
+            //console.log(data);
+        });
     };
 
     $scope.removeTarea = function(tarea) {
@@ -123,6 +150,40 @@ pomoApp.controller("tareasController", function($scope, FactoryUsuario){
             tareas = data;
         });
     };
+
+    $scope.getProyectoTarea = function(tarea) {
+        var proyecto = $scope.proyectos.find( function(proyecto, index, array) {
+            return tarea.proyecto === proyecto._id;
+        });
+        return proyecto;
+    }
+
+    // Funciones para proyecto
+    $scope.addProyecto = function() {
+        var proyecto = {
+            nombre : $scope.nombreProyecto,
+            pagoPorHora : $scope.tarifaProyecto,
+        }
+        $scope.nombreProyecto = "";
+        $scope.tarifaProyecto = 0;
+
+        console.log("si llama la func");
+
+        // envío a base de Datos
+        FactoryUsuario.createProyecto(proyecto, function(data){ 
+            console.log(data.data.data);
+            $scope.proyectos = data.data.data;
+            proyectos = data;
+        });
+    }
+
+    $scope.selectProyecto = function(proyecto) {
+        $scope.proyecto_select = proyecto;
+    }
+
+    $scope.clearProyectSelect = function() {
+        $scope.proyecto_select = "";
+    }
 
     $scope.getTiempoTotalPomos = function(pomodoros) {
         return pomodoros.reduce( function(a,b) {

@@ -3,9 +3,23 @@
   <div class="addTarea">
     <div class="form-group row justify-content-center addTarea">
       <div class="col-md-12">
-        <input ng-model="nombreTarea" id="newTareaTxt" type="text" class="form-control" id="createTarea" placeholder="Añade una tarea nueva">
+        <input ng-model="nombreTarea" id="newTareaTxt" type="text" class="form-control" placeholder="Añade una tarea nueva">
         <div class="addButton">
-        <input ng-click="addTarea()" id="createTareaAction" class="btn btn-primary" type="button" value="Añadir">
+          <span ng-bind="proyecto_select.nombre" class="label label-default"></span>
+          <div class="btn-group">
+            <button ng-click="addTarea()" type="button" class="btn btn-primary">Añadir</button>
+            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              <span class="caret"></span>
+              <span class="sr-only">Toggle Dropdown</span>
+            </button>
+            <ul class="dropdown-menu">
+              <li ng-click="selectProyecto(proyect)" ng-repeat="proyect in proyectos"><a>{{ proyect.nombre }}</a></li>
+              <li role="separator" class="divider"></li>
+              <li ng-click="clearProyectSelect()"><a>Limpiar</a></li>
+              <li><a data-toggle="modal" data-target="#modalNewProyect">Nuevo Proyecto</a></li>
+            </ul>
+          </div>
+        
         </div>
       </div>
     </div>
@@ -28,7 +42,10 @@
         </div>
         <div class="col-xs-4">
           <ul class="list-inline fright">
-              <li><span class="label label-danger">{{ muestraUrgente(tarea.tipoTarea) }}</span></li>
+              <li>
+                <span class="label label-default">{{ getProyectoTarea(tarea).nombre }}</span>
+                <span class="label label-danger">{{ muestraUrgente(tarea.tipoTarea) }}</span>
+              </li>
               <li><span class="label label-primary label-as-badge">{{ getTiempoTotalPomos(tarea.pomodorosUsados) }}</span></li>
           </ul>
         </div>
@@ -59,7 +76,28 @@
       </div>
     </li>
   </ul>
-  
+
   <p>Hola {{ nombre }} tu id es: {{id}} !</p>
+  <!-- Modal -->
+  <div class="modal fade" id="modalNewProyect" role="dialog">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Nuevo Proyecto</h4>
+        </div>
+        <div class="modal-body">
+          <form class="my-form-position form-inline f-width">
+            <input ng-model="nombreProyecto" type="text" class="form-control f-width" id="createProyecto" placeholder="Nombre del proyecto">
+            <input ng-model="tarifaProyecto" type="number" class="form-control floater-right"  min="0" placeholder="0.0">
+          </form>
+        </div>
+        <div class="modal-footer">
+          <button ng-click="addProyecto()" type="button" class="btn btn-primary" data-dismiss="modal">Crear Proyecto</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
 </div>
 <script type="text/javascript" src="./js/lists.js"></script>
