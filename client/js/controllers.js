@@ -141,6 +141,24 @@ pomoApp.controller("tareasController", function($scope, FactoryUsuario){
         });
     };
 
+    $scope.cambiarTipoTarea = function(tarea){
+        var data = {
+            id: tarea._id,
+            nombre: tarea.nombre,
+            pomodorosUsados: tarea.pomodorosUsados,
+            tipoTarea: $scope.toggleTipoTarea(tarea.tipoTarea)
+        };
+        FactoryUsuario.updateTarea(data, function(data){
+            console.log(data);
+            $scope.tareas = data.data.data;
+            tareas = data;
+        });
+    }
+
+    $scope.toggleTipoTarea = function(tipo) {
+        return (tipo === 'normal')? 'urgente' : 'normal'
+    }
+
     $scope.removeTarea = function(tarea) {
 
         var idTarea = {id : tarea._id};

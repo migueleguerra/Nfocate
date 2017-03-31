@@ -35,6 +35,7 @@
               <span class="caret"></span>
             </button>
             <ul class="dropdown-menu">
+              <li><a ng-click="cambiarTipoTarea(tarea)">Cambiar a {{ toggleTipoTarea(tarea.tipoTarea) }}</a></li>
               <li><a ng-click="removeTarea(tarea)">Eliminar</a></li>
             </ul>
           </div>

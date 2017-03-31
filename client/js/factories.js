@@ -107,6 +107,16 @@ pomoApp.factory("FactoryUsuario", function(AuthToken, $http){
         }
     };
 
+    factory.updateTarea = function(data, callback){
+        if (AuthToken.getToken()) {
+            $http.post("/updateTarea", data).then( function(tareas) {
+                    callback(tareas);
+            });
+        } else {
+            $q.reject({ msg: "Usuario no tiene token"});
+        }
+    };
+
     factory.deleteTarea = function(data, callback){
         
         if (AuthToken.getToken()) {
