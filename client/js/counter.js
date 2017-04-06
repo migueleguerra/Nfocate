@@ -86,6 +86,7 @@ function updateCounter(countTime) {
         //clearInterval(timeInterval);
         resetCounter(countTime);
         $("#temporizador").scope().temporizadorTermino();
+        $("#counterButton").prop('disabled', false);
       }
     });
   });
@@ -108,17 +109,20 @@ function stopCounter() {
 }
 
 function startCounter(counter) {
-  // if something is running stop first
-  stopCounter();
-  // set default state
-  resetCounter(counter);
-  // run counter
-  updateCounter(counter);
+  if (!$("#counterButton").prop('disabled') ) {
+    $("#counterButton").prop('disabled', true);
+    // if something is running stop first
+    stopCounter();
+    // set default state
+    resetCounter(counter);
+    // run counter
+    updateCounter(counter);
+  }
 }
 
 $( document ).ready(function() {
   $('.selectpicker').selectpicker();
-  
+
   var Settings = {};
   Settings.timer = new Countdown(1);
   $("#temporizador").scope().obtenerTiempoPomo(function (pomoTime) {

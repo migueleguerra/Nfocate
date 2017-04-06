@@ -15,14 +15,11 @@
             <dd><span class="" ng-bind="pomos_tarea"></span></dd>
             <dt class="h4">Prioridad:</dt>
             <dd><span ng-bind="priori_tarea"></span></dd>
-            <dt class="h4">Proyecto:</dt>
-            <dd><span></span></dd>
           </dl>
         </div>
       </div>
       <div>
         <input id="counterButton" class="btn btn-primary" type="button" value="Iniciar"></input>
-        <input id="counterReset" class="btn btn-default" type="button" value="Reset"></input>
         <input ng-click="terminarTarea()" id="terminarTarea" class="btn btn-default" type="button" value="Terminar Tarea"></input>
         <input data-toggle="modal" data-target="#modalNewUrgent" id="terminarTarea" class="btn btn-danger" type="button" value="Añadir Tarea Urgente"></input>
       </div>
