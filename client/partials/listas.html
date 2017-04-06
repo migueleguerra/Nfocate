@@ -23,11 +23,20 @@
         </div>
       </div>
     </div>
-    <div class="form-group row">
-    </div>
+  </div>
+  <div>
+
+  <div class="btn-group">
+  <button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+    {{ ordenTareas.nombre }}<span class="caret"></span>
+  </button>
+  <ul class="dropdown-menu">
+    <li ng-click="ordenarTareas(orden)" ng-repeat="orden in ordenCategorias"><a>{{ orden.nombre }}</a></li>
+  </ul>
+</div> 
   </div>
   <ul class="list-group">
-    <li class="list-group-item" ng-repeat="tarea in tareas | filter: { estado: false }">
+    <li class="list-group-item" ng-repeat="tarea in tareas | filter: { estado: false }  | orderBy : ordenTareas.cmd">
       <div class="row">
         <div class="col-xs-8">
           <div class="fleft list-action btn-group">
@@ -56,7 +65,7 @@
 	
   <p class="h4">Tareas terminadas</p>
   <ul class="list-group">
-    <li class="list-group-item" ng-repeat="tarea in tareas | filter: { estado: true }">
+    <li class="list-group-item" ng-repeat="tarea in tareas | filter: { estado: true } | orderBy : ordenTareas.cmd">
       <div class="row">
         <div class="col-xs-8">
           <div class="fleft list-action btn-group">

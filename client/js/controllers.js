@@ -93,6 +93,13 @@ pomoApp.controller("tareasController", function($scope, FactoryUsuario){
     var proyectos = [];
     $scope.proyectos = [];
 
+    $scope.ordenCategorias = [
+        { nombre: 'Recientes', cmd : '-updatedAt'},
+        { nombre: 'Nombre', cmd : 'nombre'},
+        { nombre: 'Proyecto', cmd : 'proyecto'},
+        { nombre: 'Prioridad', cmd : '-tipoTarea'}];
+    $scope.ordenTareas = $scope.ordenCategorias[0];
+
     $scope.tarifaProyecto = "";
     $scope.proyecto_select = "";
     
@@ -215,6 +222,10 @@ pomoApp.controller("tareasController", function($scope, FactoryUsuario){
             ret = tipo;
         }
         return ret;
+    }
+
+    $scope.ordenarTareas = function(ordenTipo) {
+        $scope.ordenTareas = ordenTipo;
     }
 });
 
