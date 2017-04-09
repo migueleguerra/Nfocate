@@ -232,14 +232,14 @@ module.exports = (function(){
 				}
 				else
 				{
-					Proyecto.remove({_id: req.body.idProyecto}, function(error){
+					Proyecto.remove({_id: req.body.id}, function(error){
 						if(error)
 						{
 							return res.json({exito: false, msg: "Error de la base de datos, no se pudo eliminar el proyecto"});
 						}
 						else
 						{
-							var index = usuario.proyectos.indexOf(req.body.idProyecto);
+							var index = usuario.proyectos.indexOf(req.body.id);
 							if (index > -1) 
     							usuario.proyectos.splice(index, 1);
 

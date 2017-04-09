@@ -1,14 +1,66 @@
 <div class="container">
 	<h1> {{ nombre }} Profile</h1>
 
-	<table class="table">
-		<tr>
-			<td>Nombre</td>
-			<td>Id</td>
-		</tr>
-		<tr>
-			<td>{{ nombre }}</td>
-			<td>{{ id }}</td>
-		</tr>
-	</table>
+	<form class="form-horizontal" ng-submit="">
+        <div class="form-group">
+            <label class="control-label col-md-2">Cambiar Nombre:</label>
+            <div class="col-md-10">
+                <input type="text" class="form-control" ng-model="">
+            </div>
+        </div>
+        <div class="row">
+	        <div class="col-md-4 col-md-offset-5">
+	            <button type="button" class="btn btn-primary form-center" ng-click="guardarCambios()">Cambiar Nombre</button>
+	        </div>
+	    </div>
+    </form>
+
+
+    <br>
+    <div class="row show-hide-message" ng-show="lmensajeExito">
+        <div class="alert alert-success">
+            {{ lmensajeExito }}    
+        </div>
+    </div>
+    <div class="row show-hide-message" ng-show="lmensajeError">
+        <div class="alert alert-danger">
+            {{ lmensajeError }}  
+        </div>
+    </div>
+
+    <br>
+    <br>
+    <div class="row">
+    	<div class="col-md-4 col-md-offset-5"><h3>Cambiar Contraseña</h3></div>
+	</div>
+    <form class="form-horizontal" ng-submit="">
+        <div class="form-group">
+            <label class="control-label col-md-2">Contraseña Actual:</label>
+            <div class="col-md-10">
+                <input type="text" class="form-control" ng-model="">
+            </div>
+            <label class="control-label col-md-2">Contraseña Nueva:</label>
+            <div class="col-md-10">
+                <input type="text" class="form-control" ng-model="">
+            </div>
+        </div>
+        <div class="row">
+	        <div class="col-md-4 col-md-offset-5">
+	            <button type="button" class="btn btn-primary form-center" ng-click="guardarCambios()">Cambiar Contraseña</button>
+	        </div>
+	    </div>
+    </form>
+
+    <br>
+    <div class="row show-hide-message" ng-show="lmensajeExito">
+        <div class="alert alert-success">
+            {{ lmensajeExito }}    
+        </div>
+    </div>
+    <div class="row show-hide-message" ng-show="lmensajeError">
+        <div class="alert alert-danger">
+            {{ lmensajeError }}  
+        </div>
+    </div>
 </div>
+

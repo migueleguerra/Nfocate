@@ -1,3 +1,15 @@
-<div class="container">
-	Análisis
+<div class="container" id="analisis">
+	<div class="text-center">
+		<div class="btn-group">
+			<button id="sesion" type="button" onclick="sesionChart()" class="btn btn-default active ">Sesión</button>
+	  		<button id="tiempo" type="button" onclick="tiempoChart()" class="btn btn-default">Tiempo</button>
+		</div>
+	</div>
+	<br><br>
+	<canvas id="lineChart" width="300" height="100"></canvas>
+	<br><br>
+	<canvas id="barChart" width="300" height="100"></canvas>
+	<br><br>
+	<canvas id="pieChart" width="300" height="100"></canvas>
 </div>
+<script type="text/javascript" src="./js/analisis.js"></script>

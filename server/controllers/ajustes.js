@@ -21,8 +21,6 @@ module.exports = (function(){
 
 		update: function(req, res){
 
-			console.log(req.body);
-
 			var newAjuste = new Ajuste({
 				tiempoPomodoro: req.body.tiempoPomodoro,
 				tiempoDescansoMenor: req.body.tiempoDescansoMenor,
