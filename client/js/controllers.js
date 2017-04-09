@@ -103,11 +103,15 @@ pomoApp.controller("tareasController", function($scope, FactoryUsuario){
     $scope.tarifaProyecto = "";
     $scope.proyecto_select = "";
     
-    FactoryUsuario.getUserTareas(function(data){
+    getTareas = function() {
+        FactoryUsuario.getUserTareas(function(data){
         //console.log(data.data.data);
         $scope.tareas = data.data.data;
         tareas = data;
-    });
+    })};
+    getTareas();
+
+
 
     FactoryUsuario.getUserProyectos(function(data){
         console.log(data.data.data);
@@ -144,7 +148,7 @@ pomoApp.controller("tareasController", function($scope, FactoryUsuario){
             idProyecto : proyecto._id,
         }
         FactoryUsuario.addTareaToProyecto(datos, function(data){
-            //console.log(data);
+            getTareas();
         });
     };
 
