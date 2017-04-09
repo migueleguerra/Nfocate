@@ -135,7 +135,6 @@ module.exports = (function(){
 				}
 				else
 				{
-					console.log("Se hicieron los cambios en el usuario correctamente");
 					var token = jwt.sign({ id: req.decoded.id,
 											   nombre: req.body.nombre
 											   }, 
@@ -166,13 +165,13 @@ module.exports = (function(){
 							}
 							else
 							{
-								res.json({exito: true, msg: "Se cambio la password correctamente"});
+								res.json({exito: true, msg: "Se cambio la contraseña correctamente"});
 							}
 						});
 					}
 					else
 					{
-						res.json({exito: false, msg: "Password incorrecta"});
+						res.json({exito: false, msg: "La contraseña actual es incorrecta"});
 					}
 				}
 			});

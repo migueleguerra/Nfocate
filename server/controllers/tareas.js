@@ -87,14 +87,19 @@ module.exports = (function(){
 		},
 
 		updatePomo: function(req, res){
-			Tarea.findOneAndUpdate({_id: req.body.id}, {$push:{ pomodorosUsados: req.body.pomodorosUsados }}, function(error){
+
+			var pomodoroUsado = {
+				pomodoro : req.body.pomodorosUsados,
+				fecha: req.body.fecha
+			}
+
+			Tarea.findOneAndUpdate({_id: req.body.id}, {$push:{ pomodorosUsados: pomodoroUsado }}, function(error){
 				if(error)
 				{
 					return res.json({exito: false, msg: "Error de la base de datos, no se agrego pomodorosUsados"});
 				}
 				else
 				{
-					console.log("Se agrego tiempo a pomodorosUsados");
 					res.redirect("/tareas");
 				}
 			});

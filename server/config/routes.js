@@ -111,11 +111,12 @@ module.exports = function(app){
 		tareas.update(req, res);
 	});
 
-	/*
+	/*  ESTA RUTA SE MODIFICO REVISAR!!!
 		en esta ruta "/updatePomoTarea" se envian los campos:
 		x-access-token: token
 		id (requerido) (String)
 		pomodorosUsados (requerido) (Esta información la obtienes de los ajustes de cada usuario en la variable "tiempoPomodoro") (Number)
+		fecha (requerido) 
 	*/
 	app.post("/updatePomoTarea", function(req, res){
 		tareas.updatePomo(req, res);

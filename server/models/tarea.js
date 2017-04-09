@@ -14,7 +14,8 @@ var TareaSchema = new Schema({
 		type: Number
 	},
 	pomodorosUsados: [{
-		type: Number,
+		pomodoro: { type: Number },
+		fecha: { type: Date }
 	}],
 	estado: {
 		type: Boolean,

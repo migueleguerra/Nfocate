@@ -1,30 +1,30 @@
 <div class="container">
 	<h1> {{ nombre }} Profile</h1>
 
-	<form class="form-horizontal" ng-submit="">
+	<form class="form-horizontal" ng-submit="cambiarNombre(nombreData)">
         <div class="form-group">
             <label class="control-label col-md-2">Cambiar Nombre:</label>
             <div class="col-md-10">
-                <input type="text" class="form-control" ng-model="">
+                <input type="text" class="form-control" ng-model="nombreData.nombre">
             </div>
         </div>
         <div class="row">
 	        <div class="col-md-4 col-md-offset-5">
-	            <button type="button" class="btn btn-primary form-center" ng-click="guardarCambios()">Cambiar Nombre</button>
+	            <input type="submit" value="Cambiar Nombre" class="btn btn-primary form-center">
 	        </div>
 	    </div>
     </form>
 
 
     <br>
-    <div class="row show-hide-message" ng-show="lmensajeExito">
+    <div class="row show-hide-message" ng-show="nombreMensajeExito">
         <div class="alert alert-success">
-            {{ lmensajeExito }}    
+            {{ nombreMensajeExito }}    
         </div>
     </div>
-    <div class="row show-hide-message" ng-show="lmensajeError">
+    <div class="row show-hide-message" ng-show="nombreMensajeError">
         <div class="alert alert-danger">
-            {{ lmensajeError }}  
+            {{ nombreMensajeError }}  
         </div>
     </div>
 
@@ -33,33 +33,33 @@
     <div class="row">
     	<div class="col-md-4 col-md-offset-5"><h3>Cambiar Contraseña</h3></div>
 	</div>
-    <form class="form-horizontal" ng-submit="">
+    <form class="form-horizontal" ng-submit="cambiarPassword(passData)">
         <div class="form-group">
             <label class="control-label col-md-2">Contraseña Actual:</label>
             <div class="col-md-10">
-                <input type="text" class="form-control" ng-model="">
+                <input type="password" class="form-control" ng-model="passData.actual">
             </div>
             <label class="control-label col-md-2">Contraseña Nueva:</label>
             <div class="col-md-10">
-                <input type="text" class="form-control" ng-model="">
+                <input type="password" class="form-control" ng-model="passData.nuevo">
             </div>
         </div>
         <div class="row">
 	        <div class="col-md-4 col-md-offset-5">
-	            <button type="button" class="btn btn-primary form-center" ng-click="guardarCambios()">Cambiar Contraseña</button>
+	             <input type="submit" value="Cambiar Contraseña" class="btn btn-primary form-center">
 	        </div>
 	    </div>
     </form>
 
     <br>
-    <div class="row show-hide-message" ng-show="lmensajeExito">
+    <div class="row show-hide-message" ng-show="passMensajeExito">
         <div class="alert alert-success">
-            {{ lmensajeExito }}    
+            {{ passMensajeExito }}    
         </div>
     </div>
-    <div class="row show-hide-message" ng-show="lmensajeError">
+    <div class="row show-hide-message" ng-show="passMensajeError">
         <div class="alert alert-danger">
-            {{ lmensajeError }}  
+            {{ passMensajeError }}  
         </div>
     </div>
 </div>

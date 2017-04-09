@@ -44,6 +44,31 @@ pomoApp.factory("Auth", function($http, AuthToken){
         AuthToken.setToken();
     }
 
+    factory.updateNombre = function(datos, callback){
+        if(AuthToken.getToken())
+        {
+            $http.post("/updateUsuarioNombre", datos).then(function(datos){
+                AuthToken.setToken(datos.data.token);
+                callback(datos);
+            });
+
+        } else {
+            $q.reject({ msg: "Usuario no tiene token"});
+        }
+    };
+
+    factory.updatePassword = function(datos, callback){
+        if(AuthToken.getToken())
+        {
+            $http.post("/updateUsuarioPassword", datos).then(function(datos){
+                callback(datos);
+            });
+
+        } else {
+            $q.reject({ msg: "Usuario no tiene token"});
+        }
+    };
+
     return factory;
 });
 

@@ -10,7 +10,6 @@ pomoApp.controller("mainController", function(Auth, $scope, $location, $rootScop
     $rootScope.$on("$routeChangeStart", function(){
         if(Auth.isLoggedIn())
         {
-            //console.log("Exito: Usuario log in");
             $scope.isLoggedIn = true;
             $scope.loadme = true;
             Auth.getInfo(function(datos){
@@ -22,7 +21,6 @@ pomoApp.controller("mainController", function(Auth, $scope, $location, $rootScop
         {
             $scope.isLoggedIn = false;
             $scope.loadme = true;
-            //console.log("No Exito: Usuario no esta log in");
             $scope.nombre = "";
             $scope.id = "";
         }
@@ -37,7 +35,7 @@ pomoApp.controller("mainController", function(Auth, $scope, $location, $rootScop
             if(datos.data.exito)
             {
                 $scope.rcargando = false;
-                $scope.rregData = {};
+                $scope.regData = {};
                 $scope.rmensajeExito = datos.data.msg + " ...Ingresando";
                 $timeout(function() {
                     $location.path("/listas");
@@ -64,7 +62,7 @@ pomoApp.controller("mainController", function(Auth, $scope, $location, $rootScop
             if(datos.data.exito)
             {
                 $scope.lcargando = false;
-                $scope.lregData = {};
+                $scope.logData = {};
                 $scope.lmensajeExito = datos.data.msg + " ...Ingresando";
                 $timeout(function() {
                     $location.path("/listas");
@@ -78,6 +76,57 @@ pomoApp.controller("mainController", function(Auth, $scope, $location, $rootScop
                 $timeout(function() {
                     $scope.lmensajeError = false;
                 }, 3000);
+            }
+        });
+    }
+
+    $scope.cambiarNombre = function(nombreData){
+        $scope.nombreMensajeExito = false;
+        $scope.nombreMensajeError = false;
+
+        Auth.updateNombre({nombre: nombreData.nombre}, function(datos){
+            if(datos.data.exito)
+            {
+                $scope.nombreData = {};
+                Auth.getInfo(function(datos){
+                    $scope.nombre = datos.data.nombre;
+                    $scope.id = datos.data.id;
+                });
+                $scope.nombreMensajeExito = datos.data.msg;
+                $timeout(function(){
+                    $scope.nombreMensajeExito = false;
+                }, 2000);
+            }
+            else
+            {
+                $scope.nombreMensajeError = datos.data.msg;
+                $timeout(function() {
+                    $scope.nombreMensajeError = false;
+                }, 2000);
+            }
+        });
+    }
+
+    $scope.cambiarPassword = function(passData){
+        $scope.passMensajeExito = false;
+        $scope.passMensajeError = false;
+
+        Auth.updatePassword({viejaPassword: passData.actual, nuevaPassword: passData.nuevo}, function(datos){
+            if(datos.data.exito)
+            {
+                $scope.passData = {};
+                $scope.passMensajeExito = datos.data.msg;
+                $timeout(function(){
+                    $scope.passMensajeExito = false;
+                }, 2000);
+            }
+            else
+            {
+                $scope.passData = {};
+                $scope.passMensajeError = datos.data.msg;
+                $timeout(function() {
+                    $scope.passMensajeError = false;
+                }, 2000);
             }
         });
     }
