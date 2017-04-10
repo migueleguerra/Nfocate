@@ -90,7 +90,7 @@ module.exports = (function(){
 
 			var pomodoroUsado = {
 				pomodoro : req.body.pomodorosUsados,
-				fecha: req.body.fecha
+				fecha: new Date
 			}
 
 			Tarea.findOneAndUpdate({_id: req.body.id}, {$push:{ pomodorosUsados: pomodoroUsado }}, function(error){
