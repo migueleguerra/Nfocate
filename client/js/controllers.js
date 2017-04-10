@@ -444,3 +444,18 @@ pomoApp.controller("ajustesController", function($scope, $timeout, FactoryAjuste
         });
     }
 });
+
+pomoApp.controller("analisisController", function($scope, FactoryUsuario){
+
+    $scope.getTareas = function(callback){
+        FactoryUsuario.getUserTareas(function(tareas){
+            callback(tareas.data.data);
+        });
+    }
+
+    $scope.getProyectos = function(callback){
+        FactoryUsuario.getUserProyectos(function(tareas){
+            callback(tareas.data.data);
+        });
+    }
+});
