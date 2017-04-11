@@ -264,7 +264,9 @@ pomoApp.controller("tareasController", function($scope, FactoryUsuario){
     }
 
     $scope.getTiempoTotalPomos = function(pomodoros) {
-        return pomodoros.reduce( function(a,b) {
+        return pomodoros.map(function(am) {
+            return am.pomodoro;
+        }).reduce( function(a,b) {
             return a + b;
         }, 0);
     };
